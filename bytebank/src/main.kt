@@ -1,14 +1,11 @@
 fun main() {
     println("Bem vindo ao Bytebank")
-    val contaAlex = Conta()
-    contaAlex.titular = "Alex"
-    contaAlex.numero = 1000
-    contaAlex.setSaldo(-200.0)
 
-    val contaFran = Conta()
-    contaFran.titular = "Fran"
-    contaFran.numero = 1001
-    contaFran.setSaldo(300.0)
+    val contaAlex = Conta(titular = "Alex", numero = 1000)
+    contaAlex.deposita(200.0)
+
+    val contaFran = Conta(numero = 1001, titular = "Fran")
+    contaFran.deposita(300.0)
 
     println(contaFran.titular)
     println(contaFran.numero)
@@ -55,9 +52,10 @@ fun main() {
 }
 
 
-class Conta {
-    var titular = ""
-    var numero = 0
+class Conta(
+    var titular: String,
+    val numero: Int
+) {
     private var saldo = 0.0
         //para deixar somente o set como privado, ou seja, somente a class conta pode alterar o valor da property saldo
         private set
@@ -104,10 +102,8 @@ fun testaCopiasEReferencias() {
     println("numeroX $numeroX")
     println("numeroY $numeroY")
 
-    val contaJoao = Conta()
-    contaJoao.titular = "João"
-    var contaMaria = Conta()
-    contaMaria.titular = "Maria"
+    val contaJoao = Conta(titular = "João", numero = 1003)
+    var contaMaria = Conta(titular = "Maria", numero = 1004)
     contaJoao.titular = "João"
 
     println("titular conta joao: ${contaJoao.titular}")
